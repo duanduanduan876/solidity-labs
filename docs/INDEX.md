@@ -11,7 +11,7 @@
 - Run:
   - `forge test --match-path test/signatures/EIP712.t.sol -vvv`
  
-  ## Tokens / ERC20Permit (EIP-2612)
+ ## Tokens / ERC20Permit (EIP-2612)
 - Source: `src/tokens/WTFPermit.sol` (WTFPermitToken, PermitSpender)
 - Tests: `test/tokens/Permit.t.sol`
 - Coverage:
