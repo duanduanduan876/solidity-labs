@@ -1,59 +1,11 @@
-# Capability Index
+Minimal Proxy：delegatecall + 存储差异演示（无升级）
 
-## Signatures / EIP-712 (demo)
-- Source: `src/signatures/EIP712Auth.sol` (EIP712Storage)
-- Tests: `test/signatures/EIP712.t.sol`
-- Coverage:
-  - Owner signs typed data for (spender, number)
-  - Spender submits signature to write `number`
-  - Negative tests: wrong spender / wrong number / wrong signer
-  - Replay: allowed (no nonce/deadline in this demo)
-- Run:
-  - `forge test --match-path test/signatures/EIP712.t.sol -vvv`
- 
-## Tokens / ERC20Permit (EIP-2612)
-- Source: `src/tokens/WTFPermit.sol` (WTFPermitToken, PermitSpender)
-- Tests: `test/tokens/Permit.t.sol`
-- Coverage:
-  - Permit signature -> allowance set -> transferFrom success
-  - Nonce increments (replay protection)
-  - Expired signature rejected
-  - Wrong signer/value rejected
-- Run:
-  - `forge test --match-path test/tokens/Permit.t.sol -vvv`
- 
-## Proxies / Minimal Delegatecall Proxy (demo)
-- Source: `src/proxies/MinimalProxy.sol` (Proxy, Logic, Caller)
-- Tests: `test/proxies/MinimalProxy.t.sol`
-- Coverage:
-  - Direct call uses Logic storage (x=99 -> increment=100)
-  - Proxy call uses Proxy storage (x=0 -> increment=1)
-  - implementation stored in Proxy slot0
-- Run:
-  - `forge test --match-path test/proxies/MinimalProxy.t.sol -vvv`
+SimpleUpgrade：升级在 proxy 上（admin upgrade），fallback 不回传返回值（教学限制）
 
-## Proxies / Simple Upgrade Proxy (demo)
-- Source: `src/proxies/SimpleUpgrade.sol` (SimpleUpgrade, Logic1, Logic2)
-- Tests: `test/proxies/SimpleUpgrade.t.sol`
-- Coverage:
-  - Delegatecall forwards foo() into implementation
-  - Admin-only upgrade switches implementation
-  - State preserved across upgrade (words stays "old" after upgrade until foo() called again)
-- Run:
-  - `forge test --match-path test/proxies/SimpleUpgrade.t.sol -vvv`
- 
-## Proxies / Transparent Proxy (demo)
-- Source: `src/proxies/TransparentProxy.sol` (TransparentProxy, TPLogic1, TPLogic2)
-- Tests: `test/proxies/TransparentProxy.t.sol`
-- Coverage:
-  - Non-admin delegates to logic (return data bubbled)
-  - Admin cannot reach logic via fallback (transparent rule)
-  - Admin-only upgrade switches implementation
-  - State preserved across upgrade (words)
-- Run:
-  - `forge test --match-path test/proxies/TransparentProxy.t.sol -vvv`
+Transparent：admin 不能走 fallback，避免 selector 冲突（return/revert 冒泡）
 
+DemoUUPS：upgrade 在逻辑合约里，delegatecall 修改 proxy 存储（说明：教学版，不是 OZ UUPS）
 
-
+生产版对应：EIP-1967 / Transparent / UUPS(OZ)
 
 
