@@ -21,5 +21,16 @@
   - Wrong signer/value rejected
 - Run:
   - `forge test --match-path test/tokens/Permit.t.sol -vvv`
+ 
+  - ## Proxies / Minimal Delegatecall Proxy (demo)
+- Source: `src/proxies/MinimalProxy.sol` (Proxy, Logic, Caller)
+- Tests: `test/proxies/MinimalProxy.t.sol`
+- Coverage:
+  - Direct call uses Logic storage (x=99 -> increment=100)
+  - Proxy call uses Proxy storage (x=0 -> increment=1)
+  - implementation stored in Proxy slot0
+- Run:
+  - `forge test --match-path test/proxies/MinimalProxy.t.sol -vvv`
+
 
 
