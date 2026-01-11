@@ -32,5 +32,16 @@
 - Run:
   - `forge test --match-path test/proxies/MinimalProxy.t.sol -vvv`
 
+ ## Proxies / Simple Upgrade Proxy (demo)
+- Source: `src/proxies/SimpleUpgrade.sol` (SimpleUpgrade, Logic1, Logic2)
+- Tests: `test/proxies/SimpleUpgrade.t.sol`
+- Coverage:
+  - Delegatecall forwards foo() into implementation
+  - Admin-only upgrade switches implementation
+  - State preserved across upgrade (words stays "old" after upgrade until foo() called again)
+- Run:
+  - `forge test --match-path test/proxies/SimpleUpgrade.t.sol -vvv`
+
+
 
 
