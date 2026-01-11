@@ -22,7 +22,7 @@
 - Run:
   - `forge test --match-path test/tokens/Permit.t.sol -vvv`
  
- - ## Proxies / Minimal Delegatecall Proxy (demo)
+- ## Proxies / Minimal Delegatecall Proxy (demo)
 - Source: `src/proxies/MinimalProxy.sol` (Proxy, Logic, Caller)
 - Tests: `test/proxies/MinimalProxy.t.sol`
 - Coverage:
