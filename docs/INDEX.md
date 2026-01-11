@@ -11,7 +11,7 @@
 - Run:
   - `forge test --match-path test/signatures/EIP712.t.sol -vvv`
  
- ## Tokens / ERC20Permit (EIP-2612)
+## Tokens / ERC20Permit (EIP-2612)
 - Source: `src/tokens/WTFPermit.sol` (WTFPermitToken, PermitSpender)
 - Tests: `test/tokens/Permit.t.sol`
 - Coverage:
@@ -32,7 +32,7 @@
 - Run:
   - `forge test --match-path test/proxies/MinimalProxy.t.sol -vvv`
 
- ## Proxies / Simple Upgrade Proxy (demo)
+## Proxies / Simple Upgrade Proxy (demo)
 - Source: `src/proxies/SimpleUpgrade.sol` (SimpleUpgrade, Logic1, Logic2)
 - Tests: `test/proxies/SimpleUpgrade.t.sol`
 - Coverage:
@@ -41,6 +41,18 @@
   - State preserved across upgrade (words stays "old" after upgrade until foo() called again)
 - Run:
   - `forge test --match-path test/proxies/SimpleUpgrade.t.sol -vvv`
+ 
+## Proxies / Transparent Proxy (demo)
+- Source: `src/proxies/TransparentProxy.sol` (TransparentProxy, TPLogic1, TPLogic2)
+- Tests: `test/proxies/TransparentProxy.t.sol`
+- Coverage:
+  - Non-admin delegates to logic (return data bubbled)
+  - Admin cannot reach logic via fallback (transparent rule)
+  - Admin-only upgrade switches implementation
+  - State preserved across upgrade (words)
+- Run:
+  - `forge test --match-path test/proxies/TransparentProxy.t.sol -vvv`
+
 
 
 
