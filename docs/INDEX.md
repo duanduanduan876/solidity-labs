@@ -49,5 +49,12 @@
 - Run: `forge test --match-path test/utils/Multicall.t.sol -vvv`
 - What it proves: batched low-level calls, optional failure handling, revert-data capture, msg.sender semantics.
 
+## DEX / SimpleSwap (demo)
+- Source: `src/dex/SimpleSwap.sol`
+- Tests: `test/dex/SimpleSwap.t.sol`
+- Run: `forge test --match-path test/dex/SimpleSwap.t.sol -vvv`
+- Notes: constant-product AMM without fees; subsequent liquidity can be imbalanced (educational simplification); slippage check uses strict `>`.
+
+
 
 
