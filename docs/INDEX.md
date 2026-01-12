@@ -68,6 +68,13 @@
 - Run: `forge test --match-path test/wallet/MultiSigWallet.t.sol -vvv`
 - What it proves: off-chain ECDSA signatures (EIP-191), threshold validation, signer sorting, nonce replay protection, arbitrary call execution.
 
+## Bridge / CrossChainToken (burn/mint demo)
+- Source: `src/bridge/CrossChainToken.sol`
+- Tests: `test/bridge/CrossChainToken.t.sol`
+- Run: `forge test --match-path test/bridge/CrossChainToken.t.sol -vvv`
+- What it proves: burn-on-bridge-out + owner-mint-on-bridge-in, supply accounting, event-driven off-chain relayer integration.
+
+
 
 
 
