@@ -74,6 +74,13 @@
 - Run: `forge test --match-path test/bridge/CrossChainToken.t.sol -vvv`
 - What it proves: burn-on-bridge-out + owner-mint-on-bridge-in, supply accounting, event-driven off-chain relayer integration.
 
+## Payments / PaymentSplitter (ETH pull-payment demo)
+- Source: `src/payments/PaymentSplitter.sol`
+- Tests: `test/payments/PaymentSplitter.t.sol`
+- Run: `forge test --match-path test/payments/PaymentSplitter.t.sol -vvv`
+- What it proves: pull-based revenue sharing, precise accounting with `totalReceived`, CEI pattern, `call` vs `transfer` gas-stipend resilience.
+
+
 
 
 
