@@ -9,9 +9,6 @@ contract MockTarget {
 
     event ValueSet(uint256 v);
 
-    // ✅ 修复警告：增加 receive 函数
-    receive() external payable {}
-
     function setValue(uint256 v) external {
         value = v;
         emit ValueSet(v);
