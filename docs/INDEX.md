@@ -30,3 +30,10 @@
   - Source: `src/proxies/DemoUUPS.sol`
   - Tests: `test/proxies/DemoUUPS.t.sol`
   - Run: `forge test --match-path test/proxies/DemoUUPS.t.sol -vvv`
+ 
+## Randomness / Chainlink VRF v2.5 (demo)
+- Source: `src/randomness/RandomVRFNFT.sol`
+- Tests: `test/randomness/RandomVRFNFT.t.sol`
+- Run: `forge test --match-path test/randomness/RandomVRFNFT.t.sol -vvv`
+- Notes: local tests mock `requestRandomWords` and call `rawFulfillRandomWords` via coordinator prank.
+
