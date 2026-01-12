@@ -10,6 +10,10 @@ A personal Solidity/Foundry lab repo focused on **reproducible** smart-contract 
 - CI runs `forge build` + `forge test` on every push.
 
 ## Quick start
+
+## Capability index
+See `docs/INDEX.md` for the full module list (source + tests + run commands).
+
 ```bash
 forge build
 forge test -vvv
