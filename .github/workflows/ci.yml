@@ -5,10 +5,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: foundry-rs/foundry-toolchain@v1
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
         with:
-          version: nightly
-      - run: forge build
-      - run: forge test -vvv
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: stable
+
+      - name: Ensure submodules (double-check)
+        run: git submodule update --init --recursive
+
+      - name: Build
+        run: forge build
+
+      - name: Test
+        run: forge test -vvv
+
 
