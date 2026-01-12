@@ -43,4 +43,11 @@
 - Run: `forge test --match-path test/nft/NFTSwap.t.sol -vvv`
 - Notes: includes a test showing `transfer`-to-contract limitation (gas stipend).
 
+## Utils / Multicall (demo)
+- Source: `src/utils/Multicall.sol`
+- Tests: `test/utils/Multicall.t.sol`
+- Run: `forge test --match-path test/utils/Multicall.t.sol -vvv`
+- What it proves: batched low-level calls, optional failure handling, revert-data capture, msg.sender semantics.
+
+
 
