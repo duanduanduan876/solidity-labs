@@ -55,6 +55,14 @@
 - Run: `forge test --match-path test/dex/SimpleSwap.t.sol -vvv`
 - Notes: constant-product AMM without fees; subsequent liquidity can be imbalanced (educational simplification); slippage check uses strict `>`.
 
+## Flashloan / UniswapV2 opposite-token repay (demo)
+- Source: `src/flash/UniswapV2FlashloanOppositeRepay.sol`
+- Tests: `test/flash/UniswapV2FlashloanOppositeRepay.t.sol`
+- Run: `forge test --match-path test/flash/UniswapV2FlashloanOppositeRepay.t.sol -vvv`
+- What it proves: UniswapV2 flash swap callback, opposite-token repayment math, optional V3 exact-output swap to source repay token.
+- Notes: tests use local mocks via `vm.etch` to avoid mainnet forking/RPC.
+
+
 
 
 
