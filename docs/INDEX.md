@@ -37,3 +37,10 @@
 - Run: `forge test --match-path test/randomness/RandomVRFNFT.t.sol -vvv`
 - Notes: local tests mock `requestRandomWords` and call `rawFulfillRandomWords` via coordinator prank.
 
+## NFTs / NFTSwap (demo)
+- Source: `src/nft/NFTSwap.sol`
+- Tests: `test/nft/NFTSwap.t.sol`
+- Run: `forge test --match-path test/nft/NFTSwap.t.sol -vvv`
+- Notes: includes a test showing `transfer`-to-contract limitation (gas stipend).
+
+
