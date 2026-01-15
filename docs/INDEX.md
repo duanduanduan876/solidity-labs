@@ -7,10 +7,17 @@
 - Tests: `test/signatures/EIP712.t.sol`
 - Run: `forge test --match-path test/signatures/EIP712.t.sol -vvv`
 
-## Tokens / ERC20Permit (EIP-2612)
-- Source: `src/tokens/WTFPermit.sol`
-- Tests: `test/tokens/Permit.t.sol`
-- Run: `forge test --match-path test/tokens/Permit.t.sol -vvv`
+## Tokens / Permit demo (EIP-2612)
+- Source:
+  - Token: `src/tokens/InterviewPermitToken.sol`
+  - Checkout: `src/tokens/PermitCheckout.sol`
+- Tests:
+  - `test/tokens/InterviewPermitToken.t.sol`
+  - `test/tokens/PermitCheckout.t.sol`
+- Run:
+  - `forge test --match-path test/tokens/InterviewPermitToken.t.sol -vvv`
+  - `forge test --match-path test/tokens/PermitCheckout.t.sol -vvv`
+  - `forge test --match-path test/tokens/*.t.sol -vvv`
 
 ## Proxies (demos)
 - Minimal Proxy (delegatecall + storage layout)
