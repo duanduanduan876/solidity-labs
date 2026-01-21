@@ -53,10 +53,17 @@
 - Notes: includes a test showing `transfer`-to-contract limitation (gas stipend).
 
 ## Utils / Multicall (demo)
-- Source: `src/utils/Multicall.sol`
+
+- Source: `src/utils/Multicall.sol` (contract: `MulticallPlus`)
 - Tests: `test/utils/Multicall.t.sol`
 - Run: `forge test --match-path test/utils/Multicall.t.sol -vvv`
-- What it proves: batched low-level calls, optional failure handling, revert-data capture, msg.sender semantics.
+- What it proves:
+  - Batched low-level calls (`call` + `staticcall`)
+  - Per-call ETH `value` support + end-of-batch refund
+  - Optional failure handling (`allowFailure`)
+  - Revert-data capture for debugging
+  - Target code guard (`target.code.length`)
+  - `msg.sender` semantics: target sees caller as the multicall contract
 
 ## DEX / SimpleSwap (demo)
 - Source: `src/dex/SimpleSwap.sol`
