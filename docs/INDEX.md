@@ -96,6 +96,41 @@
 - Run: `forge test --match-path test/payments/PaymentSplitter.t.sol -vvv`
 - What it proves: pull-based revenue sharing, precise accounting with `totalReceived`, CEI pattern, `call` vs `transfer` gas-stipend resilience.
 
+## ERC721 / MyERC721 (minimal ERC721 + tokenURI + safeTransfer receiver check)
+
+- Source: `src/ERC721/MyERC721.sol`
+- Tests: `test/ERC721/MyERC721.t.sol`
+- Run:
+  - `forge test --match-path test/ERC721/MyERC721.t.sol -vvv`
+
+### What it demonstrates
+
+- **ERC721 core flows**
+  - `mint(to, tokenId)` creates ownership and emits `Transfer(0x0, to, tokenId)`
+  - `transferFrom` enforces `owner/approved/operator` via `_isApprovedOrOwner`
+  - **Single-token approval is cleared on transfer** (`_approve(address(0), tokenId)` inside `_transfer`)
+
+- **safeTransferFrom receiver check**
+  - If `to` is a contract (`to.code.length > 0`), ERC721 calls:
+    `IERC721Receiver(to).onERC721Received(operator, from, tokenId, data)`
+  - Transfer is accepted only when the receiver returns the **magic value**
+    `IERC721Receiver.onERC721Received.selector` (`0x150b7a02`)
+  - If receiver reverts or returns a wrong selector, the transfer reverts:
+    `"ERC721: transfer to non ERC721Receiver"`
+
+- **tokenURI / off-chain metadata**
+  - `tokenURI(tokenId)` returns `_baseTokenURI + tokenId`
+  - Intended usage: `_baseTokenURI` points to a metadata folder gateway URL, e.g.
+    - `https://<gateway-domain>/ipfs/<metadataCID>/`
+  - Then `tokenURI(1)` becomes:
+    - `https://<gateway-domain>/ipfs/<metadataCID>/1`
+
+### Key notes (interview-ready)
+
+- `operator` in `onERC721Received` is the **caller of the transfer** (the address that invoked `safeTransferFrom`), not necessarily the NFT owner.
+- `from` is the previous owner, `tokenId` is the NFT id, `data` is arbitrary extra payload forwarded to the receiver.
+- The selector check is a **handshake**: it proves the receiver contract explicitly supports ERC721 safe transfers.
+
 
 
 
